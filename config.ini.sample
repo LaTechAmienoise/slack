@@ -1,5 +1,7 @@
 [slack]
 token =
+; Use this if you want to ignore some emails, space after the comma IS REQUIRED
+ignore = aa@bb.com, bb@cc.com
 
 [csv]
 delimiter = ,

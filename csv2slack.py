@@ -35,6 +35,12 @@ def main(args):
     # Create lists with expected and real members
     expected = dict()
     real = dict()
+    # Ignore members of this list
+    ignore = set()
+    try:
+        ignore = set(config['slack']['ignore'].split(', '))
+    except KeyError:
+        pass
     # Read CSV file to get expected members
     with open(args.csv, newline='') as csvinput:
         input = csv.reader(csvinput, delimiter=config['csv']['delimiter'], quotechar=config['csv']['quotechar'])
@@ -58,12 +64,12 @@ def main(args):
 
     # Create members that doesn't exists
     buffer = []
-    for user in expected.keys() - real.keys():
+    for user in expected.keys() - real.keys() - ignore:
         buffer.append('%s %s <%s>' % (expected[user]['firstname'],
                                       expected[user]['lastname'],
                                       user))
     print("Users to add: %s" % ', '.join(buffer))
-    print("Users to delete: %s" % ', '.join(real.keys() - expected.keys()))
+    print("Users to delete: %s" % ', '.join(real.keys() - expected.keys() - ignore))
 
 
 if __name__ == '__main__':
