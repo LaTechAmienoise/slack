@@ -1,4 +1,2 @@
 [slack]
-clientid = 
-secret = 
-redirecturi = 
+token =
