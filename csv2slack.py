@@ -22,6 +22,8 @@ def loadconfig(filename=None):
     config.read(filename)
     try:
         config['slack']['token']
+        config['csv']['delimiter']
+        config['csv']['quotechar']
     except KeyError as e:
         logging.critical('Require key is missing: %s' % e)
         sys.exit(1)
