@@ -18,6 +18,8 @@ using the Web API, the script display a list of email to users to add and to rem
 
 # Configuration
 
+First, you need [to create a Slack Token](https://api.slack.com/web) (see at the bottom of the page).
+
 Create ``config.ini`` from ``config.ini.sample`` with the following contents:
   
     [slack]
