@@ -57,19 +57,14 @@ def main(args):
     logging.info("Found %s users in Slack" % len(real))
 
     # Create members that doesn't exists
-    buffer = None
+    buffer = []
     for user in expected.keys() - real.keys():
-        if buffer is None:
-            buffer = '%s %s <%s>' % (expected[user]['firstname'],
-                                     expected[user]['lastname'],
-                                     user)
-        else:
-            buffer = '%s, %s %s <%s>' % (buffer,
-                                         expected[user]['firstname'],
-                                         expected[user]['lastname'],
-                                         user)
-    print("Users to add: %s" % buffer)
+        buffer.append('%s %s <%s>' % (expected[user]['firstname'],
+                                      expected[user]['lastname'],
+                                      user))
+    print("Users to add: %s" % ', '.join(buffer))
     print("Users to delete: %s" % ', '.join(real.keys() - expected.keys()))
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Synchronize slack users with the given CSV file')
