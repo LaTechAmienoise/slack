@@ -1,2 +1,6 @@
 [slack]
 token =
+
+[csv]
+delimiter = ,
+quotechar = "
